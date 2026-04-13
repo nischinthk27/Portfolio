@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Nischinth K</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: poppins, sans-serif;
+            text-decoration: none;
+        }
+        body {
+            overflow-x: hidden;
+            background: #222;
+            color: #e5e5e5;
+        }
+        .wrapper {
+            width: 1280px;
+            max-width: 95%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── HEADER ── */
+        header {
+            padding: 40px 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-icon {
+            height: 45px;
+            width: 45px;
+            background-color: #007ced;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+        }
+        nav .togglebtn {
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            top: 45px;
+            right: 3%;
+            z-index: 5;
+            cursor: pointer;
+            display: none;
+        }
+        nav .togglebtn span {
+            display: block;
+            background-color: #007ced;
+            margin: 5px 0;
+            width: 100%;
+            height: 3px;
+            transition: 0.3s;
+            transition-property: transform, opacity;
+        }
+        nav .navlinks { list-style-type: none; }
+        nav .navlinks li { display: inline-block; }
+        nav .navlinks li a { color: #e5e5e5; margin-right: 2.5rem; }
+        nav .navlinks li a.active-link {
+            color: #007ced;
+            border-bottom: 2px solid #007ced;
+            padding-bottom: 2px;
+        }
+
+        /* ── PAGE TITLE ── */
+        .page-title {
+            text-align: center;
+            padding: 3rem 0 1rem;
+        }
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #007ced;
+        }
+        .page-title p {
+            color: #aaa;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .title-underline {
+            width: 60px;
+            height: 3px;
+            background: #007ced;
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 2.5rem 0 2rem;
+        }
+        .filter-btn {
+            padding: 8px 22px;
+            border-radius: 30px;
+            border: 2px solid #444;
+            background: transparent;
+            color: #e5e5e5;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: poppins, sans-serif;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #007ced;
+            color: #007ced;
+        }
+
+        /* ── FEATURED POST ── */
+        .featured-post {
+            background: #2a2a2a;
+            border-radius: 14px;
+            border: 1px solid #007ced44;
+            display: flex;
+            gap: 0;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            transition: border-color 0.3s;
+        }
+        .featured-post:hover { border-color: #007ced; }
+        .featured-thumb {
+            width: 340px;
+            min-height: 220px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: #1c2a38;
+            color: #007ced;
+        }
+        .featured-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .featured-badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            background: #007ced22;
+            color: #007ced;
+            border: 1px solid #007ced44;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+        .featured-body h2 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .featured-body p {
+            font-size: 0.88rem;
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+        .post-meta {
+            font-size: 0.78rem;
+            color: #666;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .post-meta i { color: #007ced; }
+        .read-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 22px;
+            border-radius: 30px;
+            border: 2px solid #007ced;
+            color: #007ced;
+            font-size: 0.85rem;
+            width: fit-content;
+            transition: 0.3s;
+            font-family: poppins, sans-serif;
+            background: transparent;
+            cursor: pointer;
+        }
+        .read-btn:hover {
+            background: #007ced;
+            color: #fff;
+        }
+
+        /* ── BLOG GRID ── */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 22px;
+            padding-bottom: 5rem;
+        }
+        .blog-card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover {
+            transform: translateY(-6px);
+            border-color: #007ced;
+        }
+        .blog-card.hidden { display: none; }
+        .card-thumb-placeholder {
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+        }
+        .card-body {
+            padding: 1.2rem 1.4rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: #007ced22;
+            color: #007ced;
+            border: 1px solid #007ced44;
+        }
+        .card-body h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .card-body p {
+            font-size: 0.82rem;
+            color: #aaa;
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+            margin-top: auto;
+        }
+        .card-date {
+            font-size: 0.75rem;
+            color: #666;
+        }
+        .card-date i { color: #007ced; margin-right: 4px; }
+        .card-read {
+            font-size: 0.78rem;
+            color: #007ced;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.2s;
+            cursor: pointer;
+        }
+        .card-read:hover { gap: 8px; }
+
+        /* ── NEWSLETTER ── */
+        .newsletter {
+            background: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 14px;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-bottom: 4rem;
+        }
+        .newsletter h3 {
+            color: #007ced;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .newsletter p {
+            color: #aaa;
+            font-size: 0.88rem;
+            margin-bottom: 1.5rem;
+        }
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .newsletter-form input {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 2px solid #444;
+            background: #333;
+            color: #e5e5e5;
+            font-size: 0.88rem;
+            width: 280px;
+            font-family: poppins, sans-serif;
+            outline: none;
+        }
+        .newsletter-form input:focus { border-color: #007ced; }
+        .newsletter-form button {
+            padding: 10px 26px;
+            border-radius: 30px;
+            border: 2px solid #007ced;
+            background: #007ced;
+            color: #fff;
+            font-size: 0.88rem;
+            cursor: pointer;
+            font-family: poppins, sans-serif;
+            transition: 0.3s;
+        }
+        .newsletter-form button:hover { background: transparent; color: #007ced; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid #333;
+        }
+        footer span { color: #007ced; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 930px) {
+            nav .togglebtn { display: initial; }
+            .click span { position: absolute; margin-top: 12px; }
+            .click span:first-child { transform: rotate(-40deg); }
+            .click span:nth-child(2) { opacity: 0; margin: 0; }
+            .click span:last-child { transform: rotate(45deg); top: 0; }
+            nav .navlinks {
+                position: absolute;
+                top: 110px;
+                right: -100%;
+                bottom: 0;
+                width: 60%;
+                height: 100vh;
+                background-color: #222;
+                z-index: 3;
+                box-shadow: 5px 13px 30px rgba(0,0,0,0.1);
+                transition: 0.5s;
+                padding: 25px 0;
+            }
+            nav .navlinks li { display: block; }
+            nav .navlinks li a { display: block; margin-bottom: 15px; text-align: center; }
+            nav .navlinks.open { right: 0; }
+            .featured-post { flex-direction: column; }
+            .featured-thumb { width: 100%; min-height: 160px; }
+        }
+        @media (max-width: 600px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .page-title h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">N</div>
+            <div class="logo-text">Nischinth K</div>
+        </div>
+        <nav>
+            <div class="togglebtn">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="navlinks">
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\index.html">Home</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\portfolio\portfolio.html">Portfolio</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\resume\Nischinth Resume.pdf" target="_blank">Resume</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\blog\blog.html">Blog</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\contact\contact.html">Contact</a></li> <!-- ✅ FIXED -->
+                </ul>
+        </nav>
+    </header>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h2>My Blog</h2>
+        <div class="title-underline"></div>
+        <p>Thoughts, tutorials, and learnings from my journey in Data Analytics &amp; ML.</p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ml">Machine Learning</button>
+        <button class="filter-btn" data-filter="powerbi">Power BI</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+        <button class="filter-btn" data-filter="sql">SQL</button>
+        <button class="filter-btn" data-filter="career">Career</button>
+    </div>
+
+    <!-- Featured Post -->
+    <div class="featured-post" data-tags="ml python">
+        <div class="featured-thumb"><i class="fa-solid fa-seedling"></i></div>
+        <div class="featured-body">
+            <span class="featured-badge"><i class="fa-solid fa-star" style="font-size:10px;margin-right:4px;"></i> Featured Post</span>
+            <h2>How I Built a Crop Profit Prediction System with XGBoost &amp; Flask</h2>
+            <div class="post-meta">
+                <span><i class="fa-regular fa-calendar"></i> March 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+                <span><i class="fa-solid fa-tag"></i> ML · Python · Flask</span>
+            </div>
+            <p>From raw agricultural data (19,000+ records from Karnataka) to a deployed web app — I walk through how I preprocessed datasets, engineered 15 features, compared four regression models, and achieved an R² of ~0.97 using XGBoost.</p>
+            <a href="#" class="read-btn">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid" id="blogGrid">
+
+        <div class="blog-card" data-tags="powerbi sql">
+            <div class="card-thumb-placeholder" style="background:#1a2a1c; color:#43a047;">
+                <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">DAX</span>
+                </div>
+                <h3>Analysing Nike E-Commerce Data with Power BI &amp; DAX</h3>
+                <p>How I extracted product, pricing, and sentiment data and built an interactive dashboard using advanced slicers and DAX to uncover market trends and discount patterns.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Feb 2026</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="ml python">
+            <div class="card-thumb-placeholder" style="background:#2a1a1c; color:#ef5350;">
+                <i class="fa-solid fa-syringe"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">ML</span>
+                    <span class="tag">Prompt Engineering</span>
+                    <span class="tag">Flask</span>
+                </div>
+                <h3>Building a Disease Prediction App Using Prompt Engineering &amp; ChatGPT</h3>
+                <p>I used the Pima Indians Diabetes Dataset and leveraged ChatGPT prompt engineering to rapidly debug, generate, and refine Python and HTML code — here's what I learned.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Jan 2026</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="powerbi">
+            <div class="card-thumb-placeholder" style="background:#1c1a2a; color:#9575cd;">
+                <i class="fa-solid fa-people-group"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">HR Analytics</span>
+                </div>
+                <h3>HR Analytics Dashboard: Tracking Attrition &amp; Headcount in Power BI</h3>
+                <p>A deep dive into building an HR dashboard that tracks headcount, attrition rates, department distribution, and hiring trends — with tips on structuring your data model.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Dec 2025</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="powerbi sql">
+            <div class="card-thumb-placeholder" style="background:#2a1c1a; color:#ff7043;">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Sales</span>
+                    <span class="tag">DAX</span>
+                </div>
+                <h3>Blinkit Sales Dashboard: What Power Query Taught Me About Messy Data</h3>
+                <p>Building the Blinkit dashboard revealed how messy real-world sales data can be. Here's how I used Power Query and DAX to clean, model, and surface customer behaviour insights.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Nov 2025</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="python">
+            <div class="card-thumb-placeholder" style="background:#1a2228; color:#29b6f6;">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">AI</span>
+                    <span class="tag">Raspberry Pi</span>
+                </div>
+                <h3>What I Learned Building an AI-Powered Robotic Hand with Raspberry Pi</h3>
+                <p>At the Robotics &amp; AI Workshop, I helped build a Raspberry Pi robotic hand with AI-driven motion planning. This post covers the hardware setup, control algorithms, and key takeaways.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Oct 2025</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="career">
+            <div class="card-thumb-placeholder" style="background:#1c2a1a; color:#66bb6a;">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Career</span>
+                    <span class="tag">Big Data</span>
+                </div>
+                <h3>Why I Chose Big Data Analytics After My BCA — And What I've Learned So Far</h3>
+                <p>Moving from a BCA (CGPA 8.76) to an MSc in Big Data Analytics wasn't an obvious step. Here's the thinking behind the decision, and the skills and mindset shifts it has brought so far.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Sept 2025</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="sql">
+            <div class="card-thumb-placeholder" style="background:#1a1c28; color:#7986cb;">
+                <i class="fa-solid fa-database"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">Data Analysis</span>
+                </div>
+                <h3>SQL Tips I Use Daily as a Big Data Analytics Student</h3>
+                <p>Window functions, CTEs, and query optimisation — a practical guide to the SQL techniques that come up most often in real data analysis projects, with examples from my own work.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Aug 2025</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="powerbi sql">
+            <div class="card-thumb-placeholder" style="background:#28201a; color:#ffa726;">
+                <i class="fa-solid fa-shirt"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Excel</span>
+                    <span class="tag">DAX</span>
+                </div>
+                <h3>Adidas Sales Dashboard: Maps, Charts &amp; Retail Insights in Power BI</h3>
+                <p>Breaking down how I analysed Adidas product sales across months, states, products, and retailers — and how combining Power BI maps with DAX measures tells a clearer story than tables alone.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Jul 2025</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-card" data-tags="career">
+            <div class="card-thumb-placeholder" style="background:#1c2222; color:#26c6da;">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Career</span>
+                    <span class="tag">Soft Skills</span>
+                </div>
+                <h3>Cross-Functional Collaboration in Data Teams: What No Course Teaches You</h3>
+                <p>Working across marketing, finance, and engineering teams requires more than technical skills. Here are the communication habits and mindset shifts that have made me a better analyst.</p>
+                <div class="card-footer">
+                    <span class="card-date"><i class="fa-regular fa-calendar"></i> Jun 2025</span>
+                    <span class="card-read">Read more <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+        <h3><i class="fa-solid fa-envelope" style="margin-right:8px;"></i>Stay Updated</h3>
+        <p>Get notified when I publish new articles on Data Analytics, ML, and Power BI.</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email address">
+            <button>Subscribe</button>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>Designed &amp; built by <span>Nischinth K</span> &mdash; 2026</p>
+</footer>
+
+<script>
+    var togglebtn = document.querySelector(".togglebtn");
+    var navLinks  = document.querySelector(".navlinks");
+
+    togglebtn.addEventListener("click", function () {
+        this.classList.toggle("click");
+        navLinks.classList.toggle("open");
+    });
+
+    var filterBtns = document.querySelectorAll(".filter-btn");
+    var cards      = document.querySelectorAll(".blog-card");
+
+    filterBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            filterBtns.forEach(function (b) { b.classList.remove("active"); });
+            this.classList.add("active");
+            var filter = this.getAttribute("data-filter");
+            cards.forEach(function (card) {
+                if (filter === "all") {
+                    card.classList.remove("hidden");
+                } else {
+                    var tags = card.getAttribute("data-tags");
+                    if (tags && tags.includes(filter)) {
+                        card.classList.remove("hidden");
+                    } else {
+                        card.classList.add("hidden");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

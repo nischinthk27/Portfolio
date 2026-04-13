@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Nischinth K</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: poppins, sans-serif;
+            text-decoration: none;
+        }
+        body {
+            overflow-x: hidden;
+            background: #222;
+            color: #e5e5e5;
+            min-height: 100vh;
+        }
+        .wrapper {
+            width: 1280px;
+            max-width: 95%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── HEADER ── */
+        header {
+            padding: 40px 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+        }
+        .logo-icon {
+            height: 45px;
+            width: 45px;
+            background-color: #007ced;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+        }
+        nav .togglebtn {
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            top: 45px;
+            right: 3%;
+            z-index: 5;
+            cursor: pointer;
+            display: none;
+        }
+        nav .togglebtn span {
+            display: block;
+            background-color: #007ced;
+            margin: 5px 0;
+            width: 100%;
+            height: 3px;
+            transition: 0.3s;
+            transition-property: transform, opacity;
+        }
+        nav .navlinks { list-style-type: none; }
+        nav .navlinks li { display: inline-block; }
+        nav .navlinks li a { color: #e5e5e5; margin-right: 2.5rem; }
+        nav .navlinks li a.active-link {
+            color: #007ced;
+            border-bottom: 2px solid #007ced;
+            padding-bottom: 2px;
+        }
+
+        /* ── CONTACT LAYOUT ── */
+        .contact-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+            padding: 4rem 0 6rem;
+        }
+
+        /* ── LEFT INFO ── */
+        .contact-info {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+        .contact-info h2 {
+            font-size: 2.4rem;
+            color: #007ced;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .contact-info h2 span {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .contact-info p {
+            color: #888;
+            font-size: 0.88rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 320px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+        .info-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #007ced18;
+            border: 1.5px solid #007ced44;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #007ced;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .info-text label {
+            display: block;
+            font-size: 0.72rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+        .info-text a,
+        .info-text span {
+            font-size: 0.92rem;
+            color: #e5e5e5;
+            transition: color 0.2s;
+        }
+        .info-text a:hover { color: #007ced; }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background: #007ced;
+            border-radius: 2px;
+            margin: 2rem 0;
+        }
+
+        .socials {
+            display: flex;
+            gap: 12px;
+        }
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1.5px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e5e5e5;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .social-btn:hover {
+            border-color: #007ced;
+            color: #007ced;
+            transform: rotate(360deg);
+        }
+
+        /* ── RIGHT FORM ── */
+        .contact-form-wrap {
+            flex: 1.1;
+            background: #2a2a2a;
+            border-radius: 16px;
+            border: 1px solid #333;
+            padding: 2.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group textarea {
+            background: #222;
+            border: 1.5px solid #333;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #e5e5e5;
+            font-size: 0.88rem;
+            font-family: poppins, sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+            resize: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #007ced;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #555;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 30px;
+            border: 2px solid #007ced;
+            background: #007ced;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: poppins, sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+            margin-top: 4px;
+        }
+        .submit-btn:hover {
+            background: transparent;
+            color: #007ced;
+        }
+
+        /* success state */
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .success-msg .checkmark {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #007ced18;
+            border: 2px solid #007ced;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #007ced;
+            margin: 0 auto 1rem;
+        }
+        .success-msg h3 { color: #fff; margin-bottom: 6px; }
+        .success-msg p  { color: #888; font-size: 0.85rem; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid #333;
+        }
+        footer span { color: #007ced; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 930px) {
+            nav .togglebtn { display: initial; }
+            .click span { position: absolute; margin-top: 12px; }
+            .click span:first-child { transform: rotate(-40deg); }
+            .click span:nth-child(2) { opacity: 0; margin: 0; }
+            .click span:last-child { transform: rotate(45deg); top: 0; }
+            nav .navlinks {
+                position: absolute;
+                top: 110px; right: -100%;
+                bottom: 0; width: 60%; height: 100vh;
+                background-color: #222; z-index: 3;
+                box-shadow: 5px 13px 30px rgba(0,0,0,0.1);
+                transition: 0.5s; padding: 25px 0;
+            }
+            nav .navlinks li { display: block; }
+            nav .navlinks li a { display: block; margin-bottom: 15px; text-align: center; }
+            nav .navlinks.open { right: 0; }
+            .contact-section { flex-direction: column; gap: 36px; padding: 3rem 0 4rem; }
+            .contact-info p { max-width: 100%; }
+        }
+        @media (max-width: 560px) {
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form-wrap { padding: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">N</div>
+            <div class="logo-text">Nischinth K</div>
+        </div>
+        <nav>
+            <div class="togglebtn">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="navlinks">
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\index.html">Home</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\portfolio\portfolio.html">Portfolio</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\resume\Nischinth Resume.pdf" target="_blank">Resume</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\blog\blog.html">Blog</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\contact\contact.html">Contact</a></li> <!-- ✅ FIXED -->
+                </ul>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+
+        <!-- Left: Info -->
+        <div class="contact-info">
+            <h2>
+                <span>Get in touch</span>
+                Let's Connect.
+            </h2>
+            <p>Open to opportunities, collaborations, or just a chat about data. Drop a message and I'll get back to you.</p>
+
+            <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="info-text">
+                    <label>Email</label>
+                    <a href="mailto:nischinthkjob@gmail.com">nischinthkjob@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="info-text">
+                    <label>Phone</label>
+                    <a href="tel:+918549967705">+91 85499 67705</a>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="info-text">
+                    <label>Location</label>
+                    <span>Mangalore, Karnataka, India</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="socials">
+                <a href="https://www.linkedin.com/in/nischinth-k-510918263/" class="social-btn" target="_blank">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/nischinthk27?tab=repositories" class="social-btn" target="_blank">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:nischinthkjob@gmail.com" class="social-btn">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+<footer>
+    <p>Designed &amp; built by <span>Nischinth K</span> &mdash; 2026</p>
+</footer>
+
+<script>
+    var togglebtn = document.querySelector(".togglebtn");
+    var navLinks  = document.querySelector(".navlinks");
+    togglebtn.addEventListener("click", function () {
+        this.classList.toggle("click");
+        navLinks.classList.toggle("open");
+    });
+
+    function handleSubmit() {
+        var fname   = document.getElementById("fname").value.trim();
+        var email   = document.getElementById("email").value.trim();
+        var message = document.getElementById("message").value.trim();
+
+        if (!fname || !email || !message) {
+            alert("Please fill in your name, email, and message.");
+            return;
+        }
+
+        // swap to Formspree or EmailJS here — for now shows success UI
+        document.getElementById("contactForm").style.display = "none";
+        document.getElementById("successMsg").style.display  = "block";
+    }
+</script>
+
+</body>
+</html>

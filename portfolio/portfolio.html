@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Nischinth K</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: poppins, sans-serif;
+            text-decoration: none;
+        }
+        body {
+            overflow-x: hidden;
+            background: #222;
+            color: #e5e5e5;
+        }
+        .wrapper {
+            width: 1280px;
+            max-width: 95%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── HEADER (same as index) ── */
+        header {
+            padding: 40px 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-icon {
+            height: 45px;
+            width: 45px;
+            background-color: #007ced;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+        }
+        nav .togglebtn {
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            top: 45px;
+            right: 3%;
+            z-index: 5;
+            cursor: pointer;
+            display: none;
+        }
+        nav .togglebtn span {
+            display: block;
+            background-color: #007ced;
+            margin: 5px 0;
+            width: 100%;
+            height: 3px;
+            transition: 0.3s;
+            transition-property: transform, opacity;
+        }
+        nav .navlinks {
+            list-style-type: none;
+        }
+        nav .navlinks li {
+            display: inline-block;
+        }
+        nav .navlinks li a {
+            color: #e5e5e5;
+            margin-right: 2.5rem;
+        }
+        nav .navlinks li a.active-link {
+            color: #007ced;
+            border-bottom: 2px solid #007ced;
+            padding-bottom: 2px;
+        }
+
+        /* ── PAGE TITLE ── */
+        .page-title {
+            text-align: center;
+            padding: 3rem 0 1rem;
+        }
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #007ced;
+        }
+        .page-title p {
+            color: #aaa;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .title-underline {
+            width: 60px;
+            height: 3px;
+            background: #007ced;
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ── FILTER BUTTONS ── */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 2.5rem 0 2rem;
+        }
+        .filter-btn {
+            padding: 8px 22px;
+            border-radius: 30px;
+            border: 2px solid #444;
+            background: transparent;
+            color: #e5e5e5;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: poppins, sans-serif;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #007ced;
+            color: #007ced;
+        }
+
+        /* ── PROJECT GRID ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            padding-bottom: 5rem;
+        }
+        .project-card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: #007ced;
+        }
+        .card-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #1a1a1a;
+        }
+        .card-thumb-placeholder {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: #1c2a38;
+            color: #007ced;
+        }
+        .card-body {
+            padding: 1.2rem 1.4rem;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: #007ced22;
+            color: #007ced;
+            border: 1px solid #007ced44;
+        }
+        .card-body h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .card-body p {
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .card-links {
+            display: flex;
+            gap: 10px;
+        }
+        .card-link {
+            font-size: 0.8rem;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1.5px solid #444;
+            color: #e5e5e5;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+        .card-link:hover {
+            border-color: #007ced;
+            color: #007ced;
+        }
+        .card-link.primary {
+            border-color: #007ced;
+            color: #007ced;
+        }
+
+        /* ── HIDDEN STATE ── */
+        .project-card.hidden {
+            display: none;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid #333;
+        }
+        footer span {
+            color: #007ced;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 930px) {
+            nav .togglebtn { display: initial; }
+            .click span { position: absolute; margin-top: 12px; }
+            .click span:first-child { transform: rotate(-40deg); }
+            .click span:nth-child(2) { opacity: 0; margin: 0; }
+            .click span:last-child { transform: rotate(45deg); top: 0; }
+            nav .navlinks {
+                position: absolute;
+                top: 110px;
+                right: -100%;
+                bottom: 0;
+                width: 60%;
+                height: 100vh;
+                background-color: #222;
+                z-index: 3;
+                box-shadow: 5px 13px 30px rgba(0,0,0,0.1);
+                transition: 0.5s;
+                padding: 25px 0;
+            }
+            nav .navlinks li { display: block; }
+            nav .navlinks li a { display: block; margin-bottom: 15px; text-align: center; }
+            nav .navlinks.open { right: 0; }
+        }
+        @media (max-width: 600px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            .page-title h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <div class="logo">
+            <div class="logo-icon">N</div>
+            <div class="logo-text">Nischinth K</div>
+        </div>
+
+        <nav>
+            <div class="togglebtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="navlinks">
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\index.html">Home</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\portfolio\portfolio.html">Portfolio</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\resume\Nischinth Resume.pdf" target="_blank">Resume</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\blog\blog.html">Blog</a></li>
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\contact\contact.html">Contact</a></li> <!-- ✅ FIXED -->
+                </ul>
+        </nav>
+    </header>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h2>My Portfolio</h2>
+        <div class="title-underline"></div>
+        <p>A collection of projects I've built across data, ML, and analytics.</p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+        <button class="filter-btn" data-filter="ml">Machine Learning</button>
+        <button class="filter-btn" data-filter="powerbi">Power BI</button>
+        <button class="filter-btn" data-filter="sql">SQL</button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid" id="projectsGrid">
+
+        <div class="project-card" data-tags="python ml">
+            <div class="card-thumb-placeholder"><i class="fa-solid fa-brain"></i></div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Scikit-learn</span>
+                    <span class="tag">ML</span>
+                </div>
+                <h3>Customer Churn Prediction</h3>
+                <p>Built a classification model to predict customer churn using logistic regression and random forest. Achieved 89% accuracy on test data.</p>
+                <div class="card-links">
+                    <a href="https://github.com/nischinthk27/CustomerChurnAnalysis" class="card-link primary"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-tags="powerbi sql">
+            <div class="card-thumb-placeholder" style="background:#1a2c1a; color:#4caf50;"><i class="fa-solid fa-chart-bar"></i></div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">SQL</span>
+                </div>
+                <h3>Sales Performance Dashboard</h3>
+                <p>Interactive Power BI dashboard visualising regional sales KPIs, YoY growth, and product category trends for a retail dataset.</p>
+                <div class="card-links">
+                    <a href="https://github.com/nischinthk27/BlinkIT-Dashboard" class="card-link primary"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-tags="python ml">
+            <div class="card-thumb-placeholder" style="background:#2a1c1c; color:#e05a5a;"><i class="fa-solid fa-comments"></i></div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">NLP</span>
+                    <span class="tag">ML</span>
+                </div>
+                <h3>Sentiment Analysis — Twitter</h3>
+                <p>NLP pipeline to classify tweet sentiment using TF-IDF and a fine-tuned BERT model. Includes data cleaning and visualisation.</p>
+                <div class="card-links">
+                    <a href="#" class="card-link primary"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-tags="sql">
+            <div class="card-thumb-placeholder" style="background:#1a1c2a; color:#9575cd;"><i class="fa-solid fa-database"></i></div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">PostgreSQL</span>
+                </div>
+                <h3>E-Commerce Data Analysis</h3>
+                <p>End-to-end SQL analysis on an e-commerce dataset — cohort analysis, funnel metrics, and RFM customer segmentation.</p>
+                <div class="card-links">
+                    <a href="https://github.com/nischinthk27/NIKE-interactive-dashboard" class="card-link primary"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-tags="python powerbi">
+            <div class="card-thumb-placeholder" style="background:#1c2a1a; color:#43a047;"><i class="fa-solid fa-leaf"></i></div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Pandas</span>
+                </div>
+                <h3>HR-Analytics-Dashboard </h3>
+                <p>Scraped, cleaned, and visualised HR data and Employee performance metrics. Built a live Power BI report updated via Python scripts.</p>
+                <div class="card-links">
+                    <a href="https://github.com/nischinthk27/HR-Analytics-Dashboard" class="card-link primary"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-tags="ml python">
+            <div class="card-thumb-placeholder" style="background:#2a1a1c; color:#ef5350;"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="card-body">
+                <div class="card-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">ML</span>
+                    <span class="tag">Streamlit</span>
+                </div>
+                <h3> Disease Predictor</h3>
+                <p>Deployed a Streamlit web app that predicts heart disease risk from clinical features using a gradient-boosting model.</p>
+                <div class="card-links">
+                    <a href="https://github.com/nischinthk27/Disease-Prediction-App" class="card-link primary"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>Designed &amp; built by <span>Nischinth K</span> &mdash; 2024</p>
+</footer>
+
+<script>
+var togglebtn = document.querySelector(".togglebtn");
+var navLinks  = document.querySelector(".navlinks");
+
+togglebtn.addEventListener("click", function () {
+    this.classList.toggle("click");
+    navLinks.classList.toggle("open");
+});
+
+var filterBtns = document.querySelectorAll(".filter-btn");
+var cards      = document.querySelectorAll(".project-card");
+
+filterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+        filterBtns.forEach(function (b) { b.classList.remove("active"); });
+        this.classList.add("active");
+
+        var filter = this.getAttribute("data-filter");
+
+        cards.forEach(function (card) {
+            if (filter === "all") {
+                card.classList.remove("hidden");
+            } else {
+                var tags = card.getAttribute("data-tags");
+                if (tags && tags.includes(filter)) {
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                }
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

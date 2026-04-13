@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nischinth Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+
+<div class="hero-header">
+    <div class="wrapper">
+
+        <header>
+            <div class="logo">
+                <!-- ✅ FIXED LOGO -->
+                <div class="logo-icon">N</div>
+                <div class="logo-text">Nischinth K</div>
+            </div>
+
+            <nav>
+                <div class="togglebtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <ul class="navlinks">
+                    <li><a href="C:\Users\Nischinth\others\Animated-Dark-Portfolio-main\Animated-Dark-Portfolio-main\index.html">Home</a></li>
+                    <li><a href="portfolio/portfolio.html">Portfolio</a></li>
+                    <li><a href="resume/Nischinth Resume.pdf" target="_blank">Resume</a></li>
+                    <li><a href="blog/blog.html">Blog</a></li>
+                    <li><a href="contact/contact.html">Contact</a></li> <!-- ✅ FIXED -->
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="hero-pic">
+                <img src="images/nischinth.jpg.jpeg" alt="profile pic">
+            </div>
+
+            <div class="hero-text">
+                <h5>Hi I'm <span class="input"></span></h5>
+
+                <h1>Nischinth K</h1>
+
+                <!-- ✅ FIXED PARAGRAPH -->
+                <p>
+                    I am a Big Data Analytics student skilled in Python, SQL, and Machine Learning.
+                    Experienced in building predictive models and interactive dashboards.
+                    Passionate about turning data into meaningful insights.
+                </p>
+
+               <br>
+
+                <div class="social">
+                    <a href=https://www.linkedin.com/in/nischinth-k-510918263/><i class="fa-brands fa-linkedin"></i></a>
+                    <a href=https://github.com/nischinthk27?tab=repositories><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ CONTACT SECTION ADDED -->
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+
+    <p>Feel free to reach out for opportunities or collaborations.</p>
+
+    <p>Email: nischinthkjob@gmail.com</p>
+    <p>Phone: +91 8549967705</p>
+
+    <form action=<form action=<form action="https://formspree.io/f/yourID" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+
+    <input type="email" name="email" placeholder="Your Email" required><br><br>
+
+    <textarea name="message" placeholder="Your Message" required></textarea><br><br>
+
+    <button type="submit">Send Message</button>
+
+</section>
+
+<!-- Typed.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+
+<script>
+var togglebtn = document.querySelector(".togglebtn");
+var nav = document.querySelector(".navlinks");
+
+togglebtn.addEventListener("click", function(){
+    this.classList.toggle("click");
+    nav.classList.toggle("open");
+})
+
+var typed = new Typed(".input", {
+    strings: [
+        "Data Analyst",
+        "Machine Learning Enthusiast",
+        "Power BI Developer",
+        "Python Programmer"
+    ],
+    typeSpeed: 70,
+    backSpeed: 55,
+    loop: true
+})
+</script>
+
+</body>
+</html>
